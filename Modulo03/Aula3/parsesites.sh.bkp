@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+if [ "$1" == "" ]; then
+   echo "Curso Pentest Profissional"
+   echo "Exemplo de Uso: $0 sitealvo.com"
+else
+	wget -cq $1
+fi
+#teste=`ls *html`
+#lista=`grep href $teste | cut -d "/" -f3 |  cut -d '"' -f1 | grep "\." | cut -d ":" -f1`
+lista=`sed 's/"/&\'$'\n/g' index.html | grep -Eo '//[A-Za-z0-9/._]+' | cut -d "/" -f3 | sort | uniq`
+for sites in $lista; do
+	host $sites |sort | uniq | grep "has address";
+done
+rm -f *html
+exit 0
