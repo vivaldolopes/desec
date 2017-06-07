@@ -1,7 +1,6 @@
 #!/bin/bash
-#echo "Reconhecimento de Diretorios"
-for word in $(cat dir.txt)
-do
+echo "Reconhecimento de Diretorios"/n
+for word in $(cat dir.txt); do
 	dir=$(curl -s -o /dev/null -w "%{http_code}" $1/$word/)
 	if [ $dir == "200" ]
 		then
